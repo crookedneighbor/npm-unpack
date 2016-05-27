@@ -1,6 +1,6 @@
 {
   "name": "npm-unpack",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A module to pack and unpack your modules.",
   "main": "lib/index.js",
   "scripts": {
