@@ -1,0 +1,8 @@
+{
+  "name": "package-that-cannot-be-packed",
+  "description": "A fake module",
+  "main": "index.js",
+  "author": "Blade Barringer <blade@crookedneighbor.com> (http://crookedneighbor.com/)",
+  "license": "MIT"
+}
+

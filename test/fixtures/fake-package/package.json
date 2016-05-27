@@ -1,0 +1,9 @@
+{
+  "name": "fake-package",
+  "version": "1.2.3",
+  "description": "A fake module",
+  "main": "index.js",
+  "author": "Blade Barringer <blade@crookedneighbor.com> (http://crookedneighbor.com/)",
+  "license": "MIT"
+}
+
