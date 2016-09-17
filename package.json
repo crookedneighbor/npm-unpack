@@ -35,7 +35,7 @@
     "mocha": "^3.0.0",
     "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0",
-    "snazzy": "^4.0.0",
+    "snazzy": "^5.0.0",
     "standard": "^8.0.0"
   },
   "standard": {
