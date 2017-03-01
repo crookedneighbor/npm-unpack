@@ -19,7 +19,7 @@ describe('npm', function () {
 
     it('returns the tarred package name', function (done) {
       npm.pack(this.modulePath, function (err, tarFile) {
-        expect(err).to.not.exist
+        expect(err).to.equal(null)
 
         expect(tarFile).to.eql('fake-package-1.2.3.tgz')
 
@@ -29,7 +29,7 @@ describe('npm', function () {
 
     it('errors if file cannot be found', function (done) {
       npm.pack('/tmp/not-a-module', function (err) {
-        expect(err).to.exist
+        expect(err).to.not.equal(null)
         expect(err.message).to.contain('Command failed')
 
         done()

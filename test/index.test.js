@@ -61,7 +61,7 @@ describe('unpack', function () {
     sandbox.spy(npm, 'pack')
 
     unpack(this.config, function (err) {
-      expect(err).to.not.exist
+      expect(err).to.equal(null)
       expect(npm.pack).to.be.calledWith(this.config.directory)
 
       done()
@@ -73,7 +73,7 @@ describe('unpack', function () {
 
     this.config.directory = path.join(this.moduleBasePath, 'package-that-cannot-be-packed')
     unpack(this.config, function (err) {
-      expect(npm.pack).to.be.calledOnce
+      expect(npm.pack).to.be.calledOnce // eslint-disable-line
       expect(err).to.be.an.instanceOf(Error)
 
       expect(err.message).to.contain('No version provided in package.json')
@@ -84,7 +84,7 @@ describe('unpack', function () {
 
   it('logs packed files', function (done) {
     unpack(this.config, function (err) {
-      expect(err).to.not.exist
+      expect(err).to.equal(null)
 
       var expectedLog = [
         'package.json',
@@ -106,7 +106,7 @@ describe('unpack', function () {
     sandbox.stub(tar, 'parse').yields(new Error('Tar parsing failed'))
 
     unpack(this.config, function (err) {
-      expect(tar.parse).to.be.calledOnce
+      expect(tar.parse).to.be.calledOnce // eslint-disable-line
       expect(err.message).to.eql('Tar parsing failed')
 
       done()
@@ -117,8 +117,8 @@ describe('unpack', function () {
     sandbox.spy(tar, 'rm')
 
     unpack(this.config, function (err) {
-      expect(err).to.not.exist
-      expect(tar.rm).to.be.calledOnce
+      expect(err).to.equal(null)
+      expect(tar.rm).to.be.calledOnce // eslint-disable-line
       expect(tar.rm).to.be.calledWith(path.resolve('./fake-package-1.2.3.tgz'))
 
       done()
@@ -129,7 +129,7 @@ describe('unpack', function () {
     sandbox.stub(tar, 'rm').yields(new Error('Tar removal failed'))
 
     unpack(this.config, function (err) {
-      expect(tar.rm).to.be.calledOnce
+      expect(tar.rm).to.be.calledOnce // eslint-disable-line
       expect(err.message).to.eql('Tar removal failed')
 
       done()

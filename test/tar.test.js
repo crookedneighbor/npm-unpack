@@ -17,7 +17,7 @@ describe('tar', function () {
       var testTar = path.resolve('./test/fixtures/fake-package-1.2.3.tgz')
 
       tar.parse(testTar, function (err, files) {
-        expect(err).to.not.exist
+        expect(err).to.equal(null)
 
         var expectedFiles = [
           'package/package.json',
@@ -34,7 +34,7 @@ describe('tar', function () {
 
     it('errors if file cannot be found', function (done) {
       tar.parse('/tmp/not-a-tgz', function (err, files) {
-        expect(err).to.exist
+        expect(err).not.equal(null)
 
         done()
       })
