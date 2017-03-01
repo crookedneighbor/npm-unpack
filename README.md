@@ -1,6 +1,8 @@
 npm-unpack
 -----
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/crookedneighbor/npm-unpack.svg)](https://greenkeeper.io/)
+
 Easilly pack and unpack your npm modules to see what files are being included when you npm publish
 
 ## Installation
