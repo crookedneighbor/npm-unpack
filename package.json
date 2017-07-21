@@ -31,9 +31,9 @@
     "rimraf": "^2.5.2"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
+    "chai": "^4.1.0",
     "mocha": "^3.0.0",
-    "sinon": "^1.17.4",
+    "sinon": "^2.3.8",
     "sinon-chai": "^2.8.0",
     "snazzy": "^6.0.0",
     "standard": "^10.0.0"
