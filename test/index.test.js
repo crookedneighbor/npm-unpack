@@ -76,7 +76,7 @@ describe('unpack', function () {
       expect(npm.pack).to.be.calledOnce // eslint-disable-line
       expect(err).to.be.an.instanceOf(Error)
 
-      expect(err.message).to.contain('No version provided in package.json')
+      expect(err.message).to.contain('version')
 
       done()
     })
@@ -88,7 +88,6 @@ describe('unpack', function () {
 
       var expectedLog = [
         'package.json',
-        '.npmignore',
         'foo.js',
         'index.js',
         'lib/bar.js'
