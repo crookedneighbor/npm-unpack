@@ -1,13 +1,14 @@
-var sandbox = require('sinon').sandbox.create()
-var chai = require('chai')
-chai.use(require('sinon-chai'))
-var expect = chai.expect
-var path = require('path')
-var rm = require('rimraf')
+const sandbox = require('sinon').createSandbox()
+const chai = require('chai')
+const expect = chai.expect
+const path = require('path')
+const rm = require('rimraf')
 
-var unpack = require('../lib/').unpack
-var npm = require('../lib/npm')
-var tar = require('../lib/tar')
+chai.use(require('sinon-chai'))
+
+const unpack = require('../lib/').unpack
+const npm = require('../lib/npm')
+const tar = require('../lib/tar')
 
 describe('unpack', function () {
   this.timeout(10000)

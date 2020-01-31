@@ -1,6 +1,6 @@
 # unreleased
-
-* Drop suppport for node v4
+_Breaking Changes_
+* Drop suppport for node < v12
 
 # 0.1.1
 
