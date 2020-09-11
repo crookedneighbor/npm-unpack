@@ -28,15 +28,15 @@
   "homepage": "https://github.com/crookedneighbor/npm-unpack#readme",
   "preferGlobal": true,
   "dependencies": {
-    "rimraf": "^3.0.1"
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "chai": "^4.1.0",
-    "mocha": "^7.0.1",
-    "sinon": "^8.1.1",
-    "sinon-chai": "^3.4.0",
+    "mocha": "^8.1.3",
+    "sinon": "^9.0.3",
+    "sinon-chai": "^3.5.0",
     "snazzy": "^8.0.0",
-    "standard": "^14.3.1"
+    "standard": "^14.3.4"
   },
   "standard": {
     "globals": [
