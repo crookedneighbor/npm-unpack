@@ -2,21 +2,21 @@ var rimraf = require("rimraf").default;
 var path = require("path");
 var npm = require("../lib/npm");
 
-describe("npm", function () {
-  describe("#pack", function () {
+describe("npm", () => {
+  describe("#pack", () => {
     let modulePath;
 
-    beforeEach(function () {
+    beforeEach(() => {
       modulePath = path.resolve("./test/fixtures/fake-package");
     });
 
-    afterEach(function () {
+    afterEach(() => {
       return rimraf(path.resolve("./*.tgz"));
     });
 
-    it("returns the tarred package name", function () {
+    it("returns the tarred package name", () => {
       return new Promise((done) => {
-        npm.pack(modulePath, function (err, tarFile) {
+        npm.pack(modulePath, (err, tarFile) => {
           expect(err).toBeFalsy();
 
           expect(tarFile).to.eql("fake-package-1.2.3.tgz");
@@ -26,9 +26,9 @@ describe("npm", function () {
       });
     });
 
-    it("errors if file cannot be found", function () {
+    it("errors if file cannot be found", () => {
       return new Promise((done) => {
-        npm.pack("/tmp/not-a-module", function (err) {
+        npm.pack("/tmp/not-a-module", () => {
           expect(err).to.not.equal(null);
           expect(err.message).to.contain("Command failed");
 
