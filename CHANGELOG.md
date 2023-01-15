@@ -2,7 +2,7 @@
 
 _Breaking Changes_
 
-- Drop suppport for node < v14
+- Drop suppport for node < v16
 - Use Promise API instead of callback when using programatically
 
 # 0.1.1
