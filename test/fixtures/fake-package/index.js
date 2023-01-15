@@ -1,5 +1,5 @@
-var foo = require('./foo')
-var bar = require('./lib/bar')
+const foo = require('./foo')
+const bar = require('./lib/bar')
 
 module.exports = {
   foo: foo,

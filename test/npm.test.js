@@ -1,6 +1,6 @@
-var rimraf = require("rimraf").default;
-var path = require("path");
-var npm = require("../lib/npm");
+const rimraf = require("rimraf").default;
+const path = require("path");
+const npm = require("../lib/npm");
 
 describe("npm", () => {
   describe("#pack", () => {

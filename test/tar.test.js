@@ -1,10 +1,10 @@
-var path = require("path");
-var tar = require("../lib/tar");
+const path = require("path");
+const tar = require("../lib/tar");
 
 describe("tar", () => {
   describe("#parse", () => {
     it("resolves files in a tgz file", async () => {
-      var testTar = path.resolve("./test/fixtures/fake-package-1.2.3.tgz");
+      const testTar = path.resolve("./test/fixtures/fake-package-1.2.3.tgz");
 
       const files = await tar.parse(testTar);
 
