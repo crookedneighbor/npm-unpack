@@ -53,6 +53,10 @@ bin/your-module.js
 
 ## Automated Tests
 
+The tests are written using [vitest](https://vitest.dev/).
+
+To run them:
+
 ```
 npm test
 ```
