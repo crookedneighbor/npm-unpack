@@ -1,5 +1,7 @@
 # unreleased
 
+- Update rimraf dependency to v4
+
 _Breaking Changes_
 
 - Drop suppport for node < v16
