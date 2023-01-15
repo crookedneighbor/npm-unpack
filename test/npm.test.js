@@ -1,7 +1,6 @@
 var rimraf = require("rimraf").default;
 var path = require("path");
 var npm = require("../lib/npm");
-const { vi } = require("vitest");
 
 describe("npm", function () {
   describe("#pack", function () {

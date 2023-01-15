@@ -7,7 +7,7 @@
     "lint": "eslint .",
     "pretty": "prettier --write .",
     "posttest": "npm run lint",
-    "test": "npm run lint && mocha"
+    "test": "vitest run"
   },
   "bin": {
     "npm-unpack": "bin/npm-unpack.js"

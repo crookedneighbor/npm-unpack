@@ -1,5 +1,8 @@
 {
   "env": {
-    "mocha": true
+    "jest": true
+  },
+  "globals": {
+    "vi": true
   }
 }
