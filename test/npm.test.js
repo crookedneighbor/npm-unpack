@@ -19,7 +19,7 @@ describe("npm", () => {
         npm.pack(modulePath, (err, tarFile) => {
           expect(err).toBeFalsy();
 
-          expect(tarFile).to.eql("fake-package-1.2.3.tgz");
+          expect(tarFile).toBe("fake-package-1.2.3.tgz");
 
           done();
         });
@@ -28,8 +28,8 @@ describe("npm", () => {
 
     it("errors if file cannot be found", () => {
       return new Promise((done) => {
-        npm.pack("/tmp/not-a-module", () => {
-          expect(err).to.not.equal(null);
+        npm.pack("/tmp/not-a-module", (err) => {
+          expect(err).toBeTruthy();
           expect(err.message).to.contain("Command failed");
 
           done();
