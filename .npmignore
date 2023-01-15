@@ -1,4 +1,8 @@
 test
-.travis.yml
-.mversionrc
 *.log*
+*.tgz
+.eslintrc
+.eslintignore
+.prettierignore
+vitest.config.ts
+.github
