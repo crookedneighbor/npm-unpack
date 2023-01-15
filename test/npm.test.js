@@ -14,27 +14,16 @@ describe("npm", () => {
       return rimraf(path.resolve("./*.tgz"));
     });
 
-    it("returns the tarred package name", () => {
-      return new Promise((done) => {
-        npm.pack(modulePath, (err, tarFile) => {
-          expect(err).toBeFalsy();
+    it("resolves the tarred package name", async () => {
+      const tarFile = await npm.pack(modulePath);
 
-          expect(tarFile).toBe("fake-package-1.2.3.tgz");
-
-          done();
-        });
-      });
+      expect(tarFile).toBe("fake-package-1.2.3.tgz");
     });
 
-    it("errors if file cannot be found", () => {
-      return new Promise((done) => {
-        npm.pack("/tmp/not-a-module", (err) => {
-          expect(err).toBeTruthy();
-          expect(err.message).to.contain("Command failed");
-
-          done();
-        });
-      });
+    it("errors if file cannot be found", async () => {
+      await expect(npm.pack("/tmp/not-a-module")).rejects.toThrow(
+        "Command failed"
+      );
     });
   });
 });

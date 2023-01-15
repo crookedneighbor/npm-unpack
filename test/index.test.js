@@ -20,111 +20,64 @@ describe("unpack", () => {
     return rm(path.resolve("./*.tgz"));
   });
 
-  it("calls cb with error if module cannot be found", () => {
+  it("rejects with error if module cannot be found", async () => {
     config.directory = "/tmp/path-to-non-existent-module";
 
-    return new Promise((done) => {
-      unpack(config, (err) => {
-        expect(err).to.be.an.instanceOf(Error);
-        expect(err.message).to.contain("Cannot find module");
-
-        done();
-      });
-    });
+    await expect(unpack(config)).rejects.toThrow("Cannot find module");
   });
 
-  it("calls cb with error if module does not have a package.json", () => {
+  it("calls cb with error if module does not have a package.json", async () => {
     config.directory = path.join(
       moduleBasePath,
       "package-without-package-json/"
     );
 
-    return new Promise((done) => {
-      unpack(config, (err) => {
-        expect(err).to.be.an.instanceOf(Error);
-        expect(err.message).to.contain("Cannot find module");
-
-        done();
-      });
-    });
+    await expect(unpack(config)).rejects.toThrow("Cannot find module");
   });
 
-  it("calls cb with error if module does not have a valid package.json", () => {
+  it("calls cb with error if module does not have a valid package.json", async () => {
     config.directory = path.join(
       moduleBasePath,
       "package-without-valid-package-json/"
     );
-    return new Promise((done) => {
-      unpack(config, (err) => {
-        expect(err).to.be.an.instanceOf(Error);
-        expect(err.message).to.contain("Unexpected token }");
-
-        done();
-      });
-    });
+    await expect(unpack(config)).rejects.toThrow("Unexpected token }");
   });
 
-  it("calls npm pack on the provided path", () => {
+  it("calls npm pack on the provided path", async () => {
     vi.spyOn(npm, "pack");
 
-    return new Promise((done) => {
-      unpack(config, (err) => {
-        expect(err).toBeFalsy();
-        expect(npm.pack).toBeCalledWith(config.directory, expect.any(Function));
+    await unpack(config);
 
-        done();
-      });
-    });
+    expect(npm.pack).toBeCalledWith(config.directory);
   }, 10000);
 
-  it("calls cb with error if npm pack errors", () => {
+  it("rejects with error if npm pack errors", async () => {
     vi.spyOn(npm, "pack");
 
     config.directory = path.join(
       moduleBasePath,
       "package-that-cannot-be-packed"
     );
-    return new Promise((done) => {
-      unpack(config, (err) => {
-        expect(npm.pack).toBeCalledTimes(1);
-        expect(err).to.be.an.instanceOf(Error);
 
-        expect(err.message).to.contain("version");
+    await expect(unpack(config)).rejects.toThrow("version");
+  });
 
-        done();
-      });
+  it("logs packed files", async () => {
+    await unpack(config);
+
+    const expectedLog = ["package.json", "foo.js", "index.js", "lib/bar.js"];
+
+    expectedLog.forEach((file) => {
+      expect(config.logger).toBeCalledWith(file);
     });
   });
 
-  it("logs packed files", () => {
-    return new Promise((done) => {
-      unpack(config, (err) => {
-        expect(err).toBeFalsy();
+  it("calls cb with error if tar parsing fails", async () => {
+    vi.spyOn(tar, "parse").mockRejectedValue(new Error("Tar parsing failed"));
 
-        var expectedLog = ["package.json", "foo.js", "index.js", "lib/bar.js"];
+    await expect(unpack(config)).rejects.toThrow("Tar parsing failed");
 
-        expectedLog.forEach((file) => {
-          expect(config.logger).toBeCalledWith(file);
-        });
-
-        done();
-      });
-    });
-  });
-
-  it("calls cb with error if tar parsing fails", () => {
-    vi.spyOn(tar, "parse").mockImplementation((_, cb) => {
-      cb(new Error("Tar parsing failed"));
-    });
-
-    return new Promise((done) => {
-      unpack(config, (err) => {
-        expect(tar.parse).toBeCalledTimes(1);
-        expect(err.message).toBe("Tar parsing failed");
-
-        done();
-      });
-    });
+    expect(tar.parse).toBeCalledTimes(1);
   });
 
   // can't do this without proper mocking, which must be done with imports

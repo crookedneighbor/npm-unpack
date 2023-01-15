@@ -1,20 +1,12 @@
 ## npm-unpack
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/crookedneighbor/npm-unpack.svg)](https://greenkeeper.io/)
-
 Easilly pack and unpack your npm modules to see what files are being included when you npm publish
-
-## Installation
-
-```bash
-npm install --global npm-unpack
-```
 
 ## Usage
 
 ```bash
 cd /path/to/npm/module
-npm-unpack
+npx npm-unpack
 ```
 
 You'll see something like this:
@@ -39,9 +31,13 @@ If you have a file that shouldn't be included (such as the test file above), jus
 test/*
 ```
 
+Re-run `npm-unpack` to verify:
+
 ```
-npm-unpack
+npx npm-unpack
 ```
+
+And see that now only our source files are included!
 
 ```
 Packing your-module-name@x.y.z...
@@ -53,4 +49,10 @@ lib/foo.js
 lib/bar.js
 lib/baz.js
 bin/your-module.js
+```
+
+## Automated Tests
+
+```
+npm test
 ```
