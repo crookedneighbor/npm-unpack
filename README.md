@@ -1,5 +1,4 @@
-npm-unpack
------
+## npm-unpack
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/crookedneighbor/npm-unpack.svg)](https://greenkeeper.io/)
 
